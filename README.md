@@ -1,2 +1,3 @@
 # app-and-hashbrownies
-Der_Geret
+Nur quellcode oder Archieve kein compilierter Code
+Ausnahme Patchs oder Keygens
