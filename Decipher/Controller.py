@@ -4,9 +4,15 @@ from CAESAR import Caesar_Cipher
 from A1Z26 import A1Z26_Cipher
 
 class Controller:
-    stat=""
-    def __init__(self,root):
-        self.root=root
+    active=[]
+    language="english"
+    mode="alphabet"
+    def __init__(self,master):
+        self.root=master
+        self.panel=tkinter.Frame\
+            (self.root,width=200,height=200,bd=5,bg="#000000")
+        self.properties=tkinter.Text\
+            (self.panel,bd=2,bg="#000000",fg="#FFFFFF",font=("Courier",10),insertbackground="#00FF31",state="disabled")
         self.caesar=Caesar_Cipher(self.root)
         self.atbash=Atbash_Cipher(self.root)
         self.a1z26=A1Z26_Cipher(self.root)
@@ -24,50 +30,20 @@ class Controller:
         self.Menu.add_cascade(label="Menu",menu=self.MF1)
         self.Menu.add_cascade(label="Mode",menu=self.MF2)
         self.root["menu"]=self.Menu
+        self.panel.place(x=600,y=0,anchor="nw")
         self.root.mainloop()
 
     def Create(self,mode):
-        if mode== self.stat:
-            pass
-        else:
-            if mode=="CAESAR":
-                self.caesar.build()
-                self.stat="CAESAR"
-                try:
-                    self.atbash.frame.grid_forget()
-                except:
-                    pass
-                try:
-                    self.a1z26.frame.grid_forget()
-                except:
-                    pass
-
-            if mode=="ATBASH":
-                self.atbash.build()
-                self.stat="ATBASH"
-                try:
-                    self.caesar.frame.grid_forget()
-                except:
-                    pass
-                try:
-                    self.a1z26.frame.grid_forget()
-                except:
-                    pass
-
-            if mode=="A1Z26":
-                self.a1z26.build()
-                self.stat="A1Z26"
-                try:
-                    self.caesar.frame.grid_forget()
-                except:
-                    pass
-                try:
-                    self.atbash.frame.grid_forget()
-                except:
-                    pass
-
-            
-
-
+        if len(self.active)>3:
+            self.active[0].frame.place_forget()
+        if mode=="CAESAR":
+            self.active.append(self.caesar)
+            self.active[len(self.active)-1].build()
+        elif mode=="ATBASH":
+            self.active.append(self.atbash)
+            self.active[len(self.active)-1].build()
+        elif mode=="A1Z26":
+            self.active.append(self.a1z26)
+            self.active[len(self.active)-1].build()            
 tk=tkinter.Tk()
 Controller(tk)

@@ -2,18 +2,20 @@ import tkinter
 class Atbash_Cipher:
     def __init__(self,frame):
         self.root=frame
-        self.frame=tkinter.Frame(master=self.root,width=790,height=750,relief="sunken",bg="#000000",bd=10)
-        self.lencrypt=tkinter.Label(self.frame,text="Encrypted text:",justify="left",bg="#000000",fg='#FFFFFF',font=("Courier",16))
-        self.ldecrypt=tkinter.Label(self.frame,text="Decrypted text:",justify="left",bg="#000000",fg='#FFFFFF',font=("Courier",16))
+        self.frame=tkinter.Frame(master=self.root,width=600,height=200,relief="ridge",bg="#000000",bd=10)
+        self.lencrypt=tkinter.Label(self.frame,text="Encrypted text:",justify="left",anchor="w",bg="#000000",fg='#FFFFFF',font=("Courier",16))
+        self.ldecrypt=tkinter.Label(self.frame,text="Decrypted text:",justify="left",anchor="w",bg="#000000",fg='#FFFFFF',font=("Courier",16))
         self.encrypt=tkinter.Entry(self.frame,font=("Courier",16))
-        self.bdecrypt=tkinter.Button(self.frame,text="decrypt",command=self.decrypt,bg="#000000",fg='#FFFFFF',bd=4)
+        self.execute=tkinter.Button(self.frame,text="decrypt",command=self.decrypt,bg="#000000",fg='#FFFFFF',bd=4)
+        self.quit=tkinter.Button(self.frame,text="X",activebackground="#FF0000",fg="#FFFFFF",bg="#000000",bd=1,width=20,height=20,command=self.frame.place_forget)
 
     def build(self):
-        self.lencrypt.grid(row=0,column=0,sticky="w")
-        self.ldecrypt.grid(row=2,column=0,sticky="w")
-        self.encrypt.grid(row=0,column=1,columnspan=2)
-        self.bdecrypt.grid(row=3,column=0,sticky="w")
-        self.frame.grid()
+        self.lencrypt.place(x=0,y=10,anchor="nw",width=200,height=20)
+        self.ldecrypt.place(x=0,y=50,anchor="nw",width=580,height=20)
+        self.encrypt.place(x=201,y=10,anchor="nw",width=330,height=20)
+        self.execute.place(x=201,y=130,anchor="nw",width=580,height=20)
+        self.quit.place(x=560,y=0,anchor="nw",width=20,height=20)
+        self.frame.place(x=0,y=0,anchor="nw")
 
     def decrypt(self):
         tmp=[]

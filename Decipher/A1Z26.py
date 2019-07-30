@@ -3,18 +3,18 @@ import tkinter
 class A1Z26_Cipher:
     def __init__(self,root):
         self.root=root
-        self.frame=tkinter.Frame(master=self.root,width=790,height=750,relief="sunken",bg="#000000",bd=10)
+        self.frame=tkinter.Frame(master=self.root,width=600,height=200,relief="sunken",bg="#000000",bd=10)
         self.lencrypt=tkinter.Label(self.frame, text="Encrypted text:",justify="left",bg="#000000",fg='#FFFFFF',font=("Courier",16))
         self.ldecrypt=tkinter.Label(self.frame,text="Decryped text:",justify="left",bg="#000000",fg='#FFFFFF',font=("Courier",16))
         self.eencrypt=tkinter.Entry(self.frame, font=("Courier",16),bd=2)
         self.execute=tkinter.Button(self.frame,text="decypt",bg="#000000",fg='#FFFFFF',bd=4,command=self.decrypt)
 
     def build(self):
-        self.lencrypt.grid(row=0,column=0,sticky="w")
-        self.ldecrypt.grid(row=1,column=0,sticky="w",padx=10)
-        self.eencrypt.grid(row=0,column=1,columnspan=2,sticky="w")
-        self.execute.grid(row=2,column=0,sticky="w")
-        self.frame.grid()
+        self.lencrypt.place(x=0,y=10,anchor="nw",width=200,height=20)
+        self.ldecrypt.place(x=0,y=50,anchor="nw",width=580,height=20)
+        self.eencrypt.place(x=201,y=10,anchor="nw",width=330,height=20)
+        self.execute.place(x=0,y=130,anchor="nw",width=580,height=50)
+        self.frame.place(x=0,y=0,anchor="nw")
     
     def decrypt(self):
         result=""
