@@ -1,21 +1,22 @@
 import tkinter
-from ATBASH import Atbash_Cipher
-from CAESAR import Caesar_Cipher
-from A1Z26 import A1Z26_Cipher
+from Decoder import Caesar_Cipher
+from Decoder import A1Z26_Cipher
+from Decoder import Atbash_Cipher
 
 class Controller:
     active=[]
-    language="english"
+    language={"en":{"lencrypt":"Encrypted text:","ldecrypt":"Plain text:","lkey":"Key:"},
+              "de":{"lencrypt":"Verschlüsselter Text:","ldecrypt":"Klarer Text:","lkey":"Schlüssel"}
+              }
+    cur_language="en"
     mode="alphabet"
     def __init__(self,master):
         self.root=master
-        self.panel=tkinter.Frame\
-            (self.root,width=200,height=200,bd=5,bg="#000000")
-        self.properties=tkinter.Text\
-            (self.panel,bd=2,bg="#000000",fg="#FFFFFF",font=("Courier",10),insertbackground="#00FF31",state="disabled")
-        self.caesar=Caesar_Cipher(self.root)
-        self.atbash=Atbash_Cipher(self.root)
-        self.a1z26=A1Z26_Cipher(self.root)
+        self.panel=tkinter.Frame(self.root,width=200,height=800,bd=5,bg="#000000")
+        self.properties=tkinter.Text(self.panel,bd=2,bg="#000000",fg="#FFFFFF",font=("Courier",10),insertbackground="#00FF31",state="disabled")
+        self.caesar=Caesar_Cipher(self.root,self.language)
+        self.atbash=Atbash_Cipher(self.root,self.language)
+        self.a1z26=A1Z26_Cipher(self.root,self.language)
         self.Menu=tkinter.Menu(self.root)
         #Menu Punkte
         self.MF1=tkinter.Menu(master=self.Menu)
@@ -28,7 +29,7 @@ class Controller:
         
         self.root.geometry("800x800")
         self.Menu.add_cascade(label="Menu",menu=self.MF1)
-        self.Menu.add_cascade(label="Mode",menu=self.MF2)
+        self.Menu.add_cascade(label="Tools",menu=self.MF2)
         self.root["menu"]=self.Menu
         self.panel.place(x=600,y=0,anchor="nw")
         self.root.mainloop()
