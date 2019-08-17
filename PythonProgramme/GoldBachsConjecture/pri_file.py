@@ -1,12 +1,12 @@
 import os
-import primes
+from primes import *
 class Primes(object):
     def __init__(self):
-        self.PATH=r"C:\Users\CoolHack\Desktop\text.txt"
+        self.PATH=r".\data.txt"
   
     def create(self):
             with open(self.PATH,"w+") as f:
-                f.write(primes.pgen())
+                f.write(pgen())
                 f.close()
             
     def pliste(self): #Primzahlen Liste von bis
